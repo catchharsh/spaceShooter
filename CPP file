@@ -1,0 +1,46 @@
+
+#include<bits/stdc++.h>
+#include<map>
+using namespace std;
+long long int xorPairCount(long int arr[], long long int n,long long int x) 
+{ 
+    long long int result = 0; 
+    map<long int, long int> m; 
+  
+    for (long int i=0; i<n ; i++) 
+    { 
+        long int curr_xor =  x^arr[i];
+        if (m.find(curr_xor) != m.end()) 
+            result += m[curr_xor]; 
+        m[arr[i]]++; 
+    }
+    return result; 
+} 
+  
+
+
+main()
+{int t;
+long long int n,k,i,j,x;
+cin>>t;
+while(t!=0)
+{ 
+  cin>>n;
+  long long int c=0,d=0,e,f;
+  long int a[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%ld",&a[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+   if(a[i]%2==0)
+   c++;
+   else
+   d++;
+  }e=xorPairCount(a,n,2);
+  f=xorPairCount(a,n,0);
+  cout<<(n*(n-1))/2-c*d-e-f<<endl;
+  t--;
+}
+}
